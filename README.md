@@ -1,8 +1,8 @@
 # Papaipay
 
-Papaipay is a Financial Assessment and Asset Management Platform developed by Neugens Solution.
+Papaipay is a Debt Advisory and Asset Management Platform developed by Neugens Solution.
 
-The platform supports member onboarding, financial assessment, document collection, asset matching, contribution tracking, and administrative management for auction-property based asset acquisition workflows.
+The platform supports member onboarding, financial assessment, document collection, advisory case management, asset matching, contribution tracking, and administrative management.
 
 ## Project Positioning
 
@@ -10,9 +10,10 @@ Papaipay is not positioned as a traditional investment platform.
 
 The MVP is positioned as a:
 
+- Debt Advisory Platform
 - Financial Assessment Platform
 - Member Management Platform
-- Asset Acquisition Management Platform
+- Asset Management Platform
 - Advisor / Call Center Support Platform
 
 ## User Roles
@@ -31,6 +32,8 @@ The MVP is positioned as a:
 - Admin Portal
 - Financial Assessment
 - Document Vault
+- Advisory Case Management
+- Consent Management
 - Asset Management
 - Contribution / Topup Management
 - Activity Logs
@@ -57,6 +60,7 @@ Required documents:
 - `docs/database-schema-v1.md`
 - `docs/milestones.md`
 - `docs/codex-rules.md`
+- `docs/project-skeleton-v1.md`
 
 ## Development Rules
 
@@ -66,24 +70,3 @@ Required documents:
 - Do not continue old Codex sessions after merge
 - Every new session must inspect the latest codebase first
 - Database schema changes require approval
-
-## Current Status
-
-### Completed
-
-- GitHub Organization Setup
-- Repository Setup
-- Initial Documentation
-
-### In Progress
-
-- Blueprint v1
-- Database Schema v1
-
-### Pending
-
-- Project Skeleton
-- Authentication Module
-- Member Portal
-- Advisor Portal
-- Admin Portal
