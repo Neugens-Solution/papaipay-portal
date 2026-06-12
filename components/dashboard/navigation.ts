@@ -1,0 +1,41 @@
+import type { DashboardArea } from "@/types";
+
+export const dashboardNavigation: Record<DashboardArea, { label: string; href: string }[]> = {
+  member: [
+    { label: "Dashboard", href: "/member/dashboard" },
+    { label: "Profile", href: "/member/profile" },
+    { label: "Assessment", href: "/member/assessment" },
+    { label: "Documents", href: "/member/documents" },
+    { label: "Consent", href: "/member/consent" },
+    { label: "Cases", href: "/member/cases" },
+    { label: "Assets", href: "/member/assets" },
+    { label: "Contributions", href: "/member/contributions" },
+    { label: "eKYC", href: "/member/ekyc" },
+    { label: "Notifications", href: "/member/notifications" },
+  ],
+  advisor: [
+    { label: "Dashboard", href: "/advisor/dashboard" },
+    { label: "My Members", href: "/advisor/members" },
+    { label: "Cases", href: "/advisor/cases" },
+    { label: "Follow Up", href: "/advisor/follow-up" },
+    { label: "Notes", href: "/advisor/notes" },
+    { label: "Recommendations", href: "/advisor/recommendations" },
+    { label: "Reports", href: "/advisor/reports" },
+  ],
+  admin: [
+    { label: "Dashboard", href: "/admin/dashboard" },
+    { label: "Members", href: "/admin/members" },
+    { label: "Advisors", href: "/admin/advisors" },
+    { label: "Cases", href: "/admin/cases" },
+    { label: "Assets", href: "/admin/assets" },
+    { label: "Assessments", href: "/admin/assessments" },
+    { label: "Contributions", href: "/admin/contributions" },
+    { label: "Communications", href: "/admin/communications" },
+    { label: "Consents", href: "/admin/consents" },
+    { label: "Notifications", href: "/admin/notifications" },
+    { label: "Reports", href: "/admin/reports" },
+    { label: "Exports", href: "/admin/exports" },
+    { label: "Activity Logs", href: "/admin/activity-logs" },
+    { label: "Settings", href: "/admin/settings" },
+  ],
+};
