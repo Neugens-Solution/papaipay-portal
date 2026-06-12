@@ -4,7 +4,7 @@ export default function Page() {
   return (
     <MarketingPage
       eyebrow="Public Website"
-      title="Debt advisory and asset management platform"
+      title="Financial Assessment & Asset Management Platform"
       description="Papaipay foundation for public education, registration interest, and advisory process awareness."
     />
   );
