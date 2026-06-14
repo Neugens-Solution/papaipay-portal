@@ -1,8 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const rows = [
-  ["New member", "Assessment pending", "Today"],
-  ["Advisor review", "Under review", "Yesterday"],
+  ["New member", "Profile pending", "Today"],
+  ["Asset opportunity", "Under review", "Yesterday"],
   ["Contribution", "Recorded", "This week"],
 ];
 

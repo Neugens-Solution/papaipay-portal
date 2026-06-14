@@ -4,7 +4,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 const demoPortals = [
   { label: "Member Login", href: "/auth/member-login" },
-  { label: "Advisor Login", href: "/auth/advisor-login" },
   { label: "Admin Login", href: "/auth/admin-login" },
 ];
 

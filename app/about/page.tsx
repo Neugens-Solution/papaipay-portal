@@ -5,7 +5,7 @@ export default function Page() {
     <MarketingPage
       eyebrow="Public Website"
       title="About Papaipay"
-      description="Placeholder about page for the corporate website and financial assessment positioning."
+      description="Placeholder about page for the corporate website and asset participation positioning."
     />
   );
 }

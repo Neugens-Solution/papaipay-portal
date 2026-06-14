@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Papaipay",
-  description: "Financial Assessment & Asset Management Platform foundation.",
+  description: "Asset Participation Platform foundation.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
