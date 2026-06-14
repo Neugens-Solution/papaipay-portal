@@ -8,6 +8,11 @@ This audit checks the expected route coverage from `docs/project-skeleton-v1.md`
 
 All expected routes from the project skeleton have a matching `page.tsx` file. No missing placeholder pages were required.
 
+
+## Product Blueprint V2 Note
+
+This audit reflects route coverage for the earlier project skeleton. Current product direction is defined in `docs/product-blueprint-v2.md`. Existing legacy route placeholders may remain until a separate route cleanup task is approved; documentation-only alignment must not modify application routes.
+
 ## Expected Route Checklist
 
 | Route | Page file | Status |

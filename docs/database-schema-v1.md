@@ -2,22 +2,28 @@
 
 ## Overview
 
-This document defines the initial database structure for Papaipay MVP.
+This document defines the database direction for Papaipay and is aligned with `docs/product-blueprint-v2.md`.
 
-The schema is designed to support:
+Papaipay has two products:
+
+1. Corporate Website
+2. Asset Participation Platform
+
+The schema direction supports:
 
 - User Authentication
 - Member Management
-- Advisor Management
-- Financial Assessment
-- Document Management
-- Advisory Case Management
-- Consent Management
-- Communication Tracking
-- Asset Management
-- Contribution Tracking
+- Admin Management
+- eKYC status tracking through a planned third-party integration
+- Auction property asset opportunities
+- Member-selected participation
+- Multiple contributions and topups
+- Payment Gateway tracking as a core planned module
+- Reporting
 - Activity Logging
-- Notification Tracking
+- Corporate Website content needs
+
+Older concepts such as advisor-first workflows, advisory case management, and financial assessment-led onboarding are not primary V2 schema drivers.
 
 ---
 
@@ -39,7 +45,6 @@ Fields:
 Roles:
 
 - member
-- advisor
 - admin
 
 ---
@@ -48,7 +53,7 @@ Roles:
 
 Purpose:
 
-Store member profile information.
+Store member profile information for the Asset Participation Platform.
 
 Fields:
 
@@ -60,29 +65,27 @@ Fields:
 - email
 - address
 - occupation
-- monthly_income
-- monthly_commitment
 - status
-- advisor_id (UUID, FK → advisors.id)
+- ekyc_status
 - created_at
 - updated_at
 
 Status:
 
 - new
-- assessment_pending
-- under_review
-- approved
-- rejected
-- completed
+- profile_pending
+- ekyc_pending
+- active
+- suspended
+- closed
 
 ---
 
-# advisors
+# admins
 
 Purpose:
 
-Store advisor / sales consultant information.
+Store admin profile information.
 
 Fields:
 
@@ -93,38 +96,199 @@ Fields:
 - email
 - status
 - created_at
+- updated_at
 
 ---
 
-# assessments
+# ekyc_verifications
 
 Purpose:
 
-Store financial assessment data.
+Track eKYC verification records from a planned third-party eKYC provider.
 
 Fields:
 
 - id (UUID, Primary Key)
 - member_id (UUID, FK → members.id)
-- monthly_income
-- other_income
-- car_loan_balance
-- personal_loan_balance
-- credit_card_balance
-- total_commitment
-- dsr_percentage
-- net_disposable_income
-- remarks
+- provider_name
+- provider_reference_id
 - status
 - submitted_at
-- reviewed_at
+- verified_at
+- rejected_at
+- response_metadata
+- created_at
+- updated_at
+
+Status:
+
+- not_started
+- pending
+- verified
+- rejected
+- expired
+- manual_review
+
+---
+
+# assets
+
+Purpose:
+
+Store auction property opportunity information.
+
+Fields:
+
+- id (UUID, Primary Key)
+- title
+- property_type
+- location
+- auction_price
+- market_value
+- description
+- participation_status
+- minimum_contribution
+- maximum_contribution
+- allow_topup
+- status
+- created_at
+- updated_at
 
 Status:
 
 - draft
-- submitted
-- approved
-- rejected
+- open
+- fully_subscribed
+- closed
+- cancelled
+
+---
+
+# member_asset_participations
+
+Purpose:
+
+Link members to asset opportunities they choose to participate in.
+
+Fields:
+
+- id (UUID, Primary Key)
+- member_id (UUID, FK → members.id)
+- asset_id (UUID, FK → assets.id)
+- status
+- total_contributed_amount
+- first_contributed_at
+- last_contributed_at
+- created_at
+- updated_at
+
+Status:
+
+- pending_payment
+- active
+- completed
+- cancelled
+- refunded
+
+---
+
+# contributions
+
+Purpose:
+
+Track member contributions and topups for selected asset opportunities.
+
+Fields:
+
+- id (UUID, Primary Key)
+- member_id (UUID, FK → members.id)
+- asset_id (UUID, FK → assets.id)
+- participation_id (UUID, FK → member_asset_participations.id)
+- contribution_type
+- amount
+- payment_method
+- payment_status
+- gateway_transaction_id
+- reference_no
+- receipt_url
+- status
+- created_at
+- updated_at
+
+Contribution Types:
+
+- initial
+- additional
+- topup
+
+Status:
+
+- pending
+- paid
+- verified
+- failed
+- cancelled
+- refunded
+
+---
+
+# payment_transactions
+
+Purpose:
+
+Track payment gateway transactions and reconciliation for contributions.
+
+Fields:
+
+- id (UUID, Primary Key)
+- contribution_id (UUID, FK → contributions.id)
+- member_id (UUID, FK → members.id)
+- gateway_provider
+- gateway_reference
+- amount
+- currency
+- status
+- paid_at
+- failed_at
+- raw_response
+- created_at
+- updated_at
+
+Status:
+
+- initiated
+- pending
+- successful
+- failed
+- cancelled
+- refunded
+- requires_review
+
+---
+
+# reports
+
+Purpose:
+
+Store generated report metadata for member and admin reporting.
+
+Fields:
+
+- id (UUID, Primary Key)
+- report_type
+- generated_by (UUID, FK → users.id)
+- file_url
+- filters
+- status
+- created_at
+
+Report Types:
+
+- member_contributions
+- asset_participation
+- payment_gateway
+- ekyc_status
+- operational_activity
 
 ---
 
@@ -132,7 +296,7 @@ Status:
 
 Purpose:
 
-Store uploaded member documents.
+Store uploaded member documents when needed for profile, eKYC support, contribution records, or compliance evidence.
 
 Fields:
 
@@ -147,10 +311,9 @@ Fields:
 Document Types:
 
 - ic
-- payslip
-- bank_statement
-- epf
-- ccris
+- proof_of_address
+- payment_receipt
+- ekyc_supporting_document
 - other
 
 Status:
@@ -161,41 +324,11 @@ Status:
 
 ---
 
-# cases
-
-Purpose:
-
-Store advisory cases assigned to members.
-
-Fields:
-
-- id (UUID, Primary Key)
-- member_id (UUID, FK → members.id)
-- advisor_id (UUID, FK → advisors.id)
-- case_reference
-- case_type
-- status
-- recommendation
-- remarks
-- created_at
-- updated_at
-
-Status:
-
-- open
-- under_review
-- recommendation_prepared
-- awaiting_member
-- completed
-- cancelled
-
----
-
 # consents
 
 Purpose:
 
-Store member consent and authorization records.
+Store member consent, declarations, and authorization records.
 
 Fields:
 
@@ -211,130 +344,10 @@ Fields:
 Consent Types:
 
 - pdpa
-- advisory_authorization
+- platform_terms
+- payment_authorization
 - declaration
 - other
-
----
-
-# communications
-
-Purpose:
-
-Store communication history with members.
-
-Fields:
-
-- id (UUID, Primary Key)
-- member_id (UUID, FK → members.id)
-- advisor_id (UUID, FK → advisors.id)
-- communication_type
-- subject
-- message
-- created_at
-
-Communication Types:
-
-- call
-- whatsapp
-- email
-- sms
-- meeting
-
----
-
-# assets
-
-Purpose:
-
-Store auction property information.
-
-Fields:
-
-- id (UUID, Primary Key)
-- title
-- property_type
-- location
-- auction_price
-- market_value
-- expected_profit
-- description
-- status
-- created_at
-
-Status:
-
-- available
-- reserved
-- assigned
-- completed
-
----
-
-# member_assets
-
-Purpose:
-
-Link members to assigned assets.
-
-Fields:
-
-- id (UUID, Primary Key)
-- member_id (UUID, FK → members.id)
-- asset_id (UUID, FK → assets.id)
-- assigned_by (UUID, FK → users.id)
-- assigned_date
-- status
-- remarks
-
-Status:
-
-- assigned
-- processing
-- completed
-- cancelled
-
----
-
-# contributions
-
-Purpose:
-
-Track member contribution or topup activities.
-
-Fields:
-
-- id (UUID, Primary Key)
-- member_id (UUID, FK → members.id)
-- asset_id (UUID, FK → assets.id)
-- amount
-- payment_method
-- reference_no
-- receipt_url
-- status
-- created_at
-
-Status:
-
-- pending
-- verified
-- rejected
-
----
-
-# notes
-
-Purpose:
-
-Store advisor notes and follow-up records.
-
-Fields:
-
-- id (UUID, Primary Key)
-- member_id (UUID, FK → members.id)
-- advisor_id (UUID, FK → advisors.id)
-- note
-- created_at
 
 ---
 
@@ -378,13 +391,62 @@ Fields:
 
 Examples:
 
-- Member uploaded document
-- Member submitted assessment
-- Member signed consent
-- Advisor added note
-- Advisor created case
-- Admin approved assessment
-- Admin assigned asset
+- Member completed profile
+- Member submitted eKYC
+- Member selected asset opportunity
+- Member made contribution
+- Member added topup
+- Payment gateway transaction updated
+- Admin updated asset opportunity
+- Admin reviewed payment exception
+
+---
+
+# corporate_content
+
+Purpose:
+
+Reserve content records for Corporate Website sections.
+
+Fields:
+
+- id (UUID, Primary Key)
+- content_type
+- slug
+- title
+- body
+- status
+- published_at
+- created_at
+- updated_at
+
+Content Types:
+
+- page
+- faq
+- team_member
+- staff_profile
+- career
+- privacy_policy
+- terms_and_conditions
+
+---
+
+# Reserved Future Tables
+
+The following future-ready areas are reserved but not considered MVP-complete without separate approval:
+
+## profit_distributions
+
+Reserved for future profit distribution records.
+
+## rental_distributions
+
+Reserved for future rental distribution records.
+
+## commission_management
+
+Reserved for future commission management records.
 
 ---
 
@@ -392,25 +454,27 @@ Examples:
 
 users
 ├── members
-├── advisors
+├── admins
 ├── notifications
 └── activity_logs
 
 members
-├── assessments
+├── ekyc_verifications
 ├── documents
-├── contributions
-├── notes
-├── member_assets
-├── cases
 ├── consents
-└── communications
-
-advisors
-├── notes
-├── cases
-└── communications
+├── member_asset_participations
+├── contributions
+└── payment_transactions
 
 assets
-├── member_assets
+├── member_asset_participations
 └── contributions
+
+member_asset_participations
+└── contributions
+
+contributions
+└── payment_transactions
+
+users
+└── reports

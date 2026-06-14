@@ -1,43 +1,61 @@
 # Papaipay
 
-Papaipay is a Debt Advisory and Asset Management Platform developed by Neugens Solution.
+Papaipay is a product ecosystem developed by Neugens Solution with two primary products:
 
-The platform supports member onboarding, financial assessment, document collection, advisory case management, asset matching, contribution tracking, and administrative management.
+1. **Corporate Website** — the public brand, company information, team, FAQ, contact, career, privacy, and terms presence.
+2. **Asset Participation Platform** — the authenticated platform for members and admins to manage eKYC, asset opportunities, contributions, payment gateway workflows, and reporting.
 
-## Project Positioning
+## Product Positioning
 
-Papaipay is not positioned as a traditional investment platform.
+Papaipay Product Blueprint V2 positions the platform around auction property asset participation.
 
-The MVP is positioned as a:
+Members browse asset opportunities and choose opportunities themselves. The platform must support multiple contributions and topups, with payment gateway integration planned as a core module.
 
-- Debt Advisory Platform
-- Financial Assessment Platform
-- Member Management Platform
-- Asset Management Platform
-- Advisor / Call Center Support Platform
+The latest direction removes primary emphasis from advisor workflows, case management, and financial assessment-led onboarding.
 
 ## User Roles
 
-- Public
+Primary authenticated roles:
+
 - Member
-- Advisor
 - Admin
 
-## Core Modules
+Public visitors use the Corporate Website.
 
-- Corporate Website
-- Authentication
+## Product Areas
+
+### Corporate Website
+
+- Public website
+- Brand presence
+- Team directory
+- Staff profile pages
+- FAQ
+- Contact
+- Career
+- Privacy Policy
+- Terms & Conditions
+
+### Asset Participation Platform
+
 - Member Portal
-- Advisor Portal
 - Admin Portal
-- Financial Assessment
-- Document Vault
-- Advisory Case Management
-- Consent Management
-- Asset Management
-- Contribution / Topup Management
-- Activity Logs
-- CMS
+- eKYC with planned third-party integration
+- Asset Opportunities
+- Contributions
+- Topups
+- Payment Gateway
+- Reporting
+
+## Future-Ready Reserved Areas
+
+The documentation reserves space for the following future modules:
+
+- Profit Distribution
+- Rental Distribution
+- Commission Management
+
+These areas should remain future-ready unless implementation is explicitly approved.
 
 ## Tech Stack
 
@@ -54,13 +72,18 @@ The MVP is positioned as a:
 
 Project documentation is stored in the `/docs` folder.
 
-Required documents:
+Primary documents:
 
-- `docs/blueprint-v1.md`
+- `docs/product-blueprint-v2.md`
 - `docs/database-schema-v1.md`
+- `docs/project-skeleton-v1.md`
+- `docs/route-audit-v1.md`
 - `docs/milestones.md`
 - `docs/codex-rules.md`
-- `docs/project-skeleton-v1.md`
+
+Legacy reference:
+
+- `docs/blueprint-v1.md` is superseded by `docs/product-blueprint-v2.md` for product direction.
 
 ## Development Rules
 
@@ -70,3 +93,4 @@ Required documents:
 - Do not continue old Codex sessions after merge
 - Every new session must inspect the latest codebase first
 - Database schema changes require approval
+- Documentation-only tasks must not modify application code, routes, UI, or add features

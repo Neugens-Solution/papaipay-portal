@@ -1,5 +1,8 @@
 # Papaipay Blueprint v1
 
+> **Legacy notice:** This document is retained for historical reference only. Current product direction is defined in `docs/product-blueprint-v2.md`. Product Blueprint V2 defines two products: Corporate Website and Asset Participation Platform, with Member and Admin as the primary authenticated roles.
+
+
 ## Project Overview
 
 Papaipay is a Debt Advisory and Asset Management Platform designed to support members through financial assessment, document collection, advisory case management, consent management, asset matching, contribution tracking, and progress monitoring.
