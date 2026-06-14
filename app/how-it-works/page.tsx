@@ -5,7 +5,7 @@ export default function Page() {
     <MarketingPage
       eyebrow="Public Website"
       title="How it works"
-      description="Placeholder journey explaining assessment, document collection, advisor review, and progress tracking."
+      description="Placeholder journey explaining profile completion, eKYC readiness, asset opportunity selection, contribution, and top up tracking."
     />
   );
 }

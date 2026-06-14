@@ -5,12 +5,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 const publicNavLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/henrys-asset-programme", label: "Henry's Asset Programme" },
   { href: "/how-it-works", label: "How It Works" },
-  { href: "/advisory-process", label: "Advisory Process" },
+  { href: "/asset-opportunities", label: "Asset Opportunities" },
+  { href: "/our-team", label: "Our Team" },
+  { href: "/career", label: "Career" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
-  { href: "/auth/register", label: "Register" },
-  { href: "/auth/login", label: "Portal Login" },
 ];
 
 export function PublicHeader() {
@@ -49,9 +50,9 @@ export function MarketingPage({ eyebrow, title, description }: { eyebrow: string
             <CardDescription>Placeholder content for future Papaipay modules.</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-3 text-sm text-muted-foreground">
-            <div className="rounded-lg bg-muted p-4">Financial assessment workflow</div>
-            <div className="rounded-lg bg-muted p-4">Document and consent tracking</div>
-            <div className="rounded-lg bg-muted p-4">Advisor and admin operations</div>
+            <div className="rounded-lg bg-muted p-4">Member profile and eKYC readiness</div>
+            <div className="rounded-lg bg-muted p-4">Asset opportunity and contribution tracking</div>
+            <div className="rounded-lg bg-muted p-4">Member and admin portal operations</div>
           </CardContent>
         </Card>
       </section>

@@ -12,9 +12,9 @@ export function PortalPage({ title, description }: { title: string; description:
         <p className="mt-3 max-w-3xl text-muted-foreground">{description}</p>
       </section>
       <section className="grid gap-4 md:grid-cols-3">
-        <DashboardCard title="Open cases" value="24" description="Placeholder cases" />
-        <DashboardCard title="Pending reviews" value="12" description="Placeholder reviews" />
-        <DashboardCard title="Completed" value="8" description="Placeholder progress" />
+        <DashboardCard title="Asset opportunities" value="24" description="Placeholder opportunities" />
+        <DashboardCard title="Pending contributions" value="12" description="Placeholder top ups" />
+        <DashboardCard title="Completed payments" value="8" description="Placeholder progress" />
       </section>
       <section className="grid gap-4 xl:grid-cols-2">
         <ChartPlaceholder />
