@@ -1,5 +1,8 @@
 # Papaipay Product Blueprint V2
 
+> **Legacy / superseded notice:** This document is retained for historical reference only. The current approved direction is PAPAIPAY Portal Blueprint V1 in `docs/product-blueprint-v1.md`, focused on a clickable UI prototype with mock data only.
+
+
 ## Purpose
 
 This document defines the current product direction for Papaipay.

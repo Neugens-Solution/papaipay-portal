@@ -1,5 +1,8 @@
 # Route Audit v1
 
+> **Legacy / superseded notice:** This document is retained for historical reference only. The current route audit is `docs/route-audit-v2.md`.
+
+
 ## Scope
 
 This audit checks the expected route coverage from `docs/project-skeleton-v1.md` against the current Next.js App Router files.
