@@ -1,0 +1,4 @@
+import Link from "next/link";
+import { PageHeader, SimpleTable } from "@/components/member/member-ui";
+import { formatCurrency, opportunities, participations } from "@/lib/member-mock-data";
+export default function Page() { return <div><PageHeader title="My Participations"><p>Review mock participation intent and allocation records connected to member-visible opportunities.</p></PageHeader><SimpleTable headers={["Opportunity","Amount","Allocation","Status","Payment","Submitted"]} rows={participations.map((p) => { const opp = opportunities.find((o) => o.id === p.opportunityId); return [<Link className="font-semibold text-emerald-700" href={`/member/opportunities/${opp?.slug}`}>{opp?.title}</Link>, formatCurrency(p.amount), p.allocationLabel, p.status, p.paymentStatus, p.submittedAt]; })} /></div>; }

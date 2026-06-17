@@ -1,10 +1,3 @@
-import { PortalPage } from "@/components/placeholders/portal-page";
-
-export default function Page() {
-  return (
-    <PortalPage
-      title="Member Distributions"
-      description="Placeholder distributions page for future profit and rental distribution information. No authentication, database logic, payment gateway, or eKYC integration is implemented."
-    />
-  );
-}
+import { PageHeader, SimpleTable, StatCard } from "@/components/member/member-ui";
+import { distributions, formatCurrency } from "@/lib/member-mock-data";
+export default function Page() { const paid = distributions.filter((d) => d.status === "Paid").reduce((s, d) => s + d.amount, 0); const pending = distributions.filter((d) => d.status !== "Paid").reduce((s, d) => s + d.amount, 0); return <div><PageHeader title="Distribution History"><p>Member-facing record of prototype distributions connected to completed and distribution-active projects.</p></PageHeader><div className="mb-6 grid gap-4 md:grid-cols-3"><StatCard label="Total distributed" value={formatCurrency(paid)} note="Paid mock records" /><StatCard label="Pending distribution" value={formatCurrency(pending)} note="Scheduled prototype value" /><StatCard label="Latest paid date" value="31 May 2026" note="Most recent paid mock record" /></div><div className="mb-6 grid gap-3 rounded-2xl border bg-card p-4 md:grid-cols-3"><select className="rounded-md border bg-background p-2 text-sm"><option>All statuses</option></select><select className="rounded-md border bg-background p-2 text-sm"><option>All properties</option></select><input className="rounded-md border bg-background p-2 text-sm" placeholder="Date range" /></div><SimpleTable headers={["Property","Contribution","Distribution","Paid Date","Status","Reference"]} rows={distributions.map((d) => [d.property, formatCurrency(d.contribution), formatCurrency(d.amount), d.distributionDate, d.status, d.referenceLabel])} /></div>; }

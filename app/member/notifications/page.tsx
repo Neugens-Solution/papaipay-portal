@@ -1,10 +1,6 @@
-import { PortalPage } from "@/components/placeholders/portal-page";
-
-export default function Page() {
-  return (
-    <PortalPage
-      title="Member Notifications"
-      description="Placeholder notifications page for the member portal foundation. No authentication, database logic, payment gateway, or eKYC integration is implemented."
-    />
-  );
-}
+import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge, PageHeader } from "@/components/member/member-ui";
+import { notifications } from "@/lib/member-mock-data";
+const categories = ["Account", "Opportunity", "Participation", "Progress Updates", "Distribution", "System"];
+export default function Page() { return <div><PageHeader title="Notifications"><p>Categorized member notifications for account, opportunity, participation, progress, distribution, and system updates.</p></PageHeader><div className="grid gap-6 lg:grid-cols-[260px_1fr]"><Card><CardHeader><CardTitle>Categories</CardTitle></CardHeader><CardContent className="space-y-2">{categories.map((cat) => <div key={cat} className="rounded-lg border px-3 py-2 text-sm">{cat}</div>)}</CardContent></Card><div className="space-y-4">{notifications.map((item) => <Link href={item.relatedHref} key={item.id} className="block"><Card className={item.read ? "" : "border-emerald-300 bg-emerald-50/40"}><CardHeader><div className="flex flex-wrap items-center gap-2"><Badge>{item.category}</Badge><Badge>{item.priority}</Badge><span className="text-sm text-muted-foreground">{item.createdAt}</span>{!item.read && <span className="text-xs font-semibold text-emerald-700">Unread</span>}</div><CardTitle>{item.title}</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">{item.message}</p></CardContent></Card></Link>)}</div></div></div>; }

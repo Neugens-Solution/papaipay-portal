@@ -1,10 +1,10 @@
-import { PortalPage } from "@/components/placeholders/portal-page";
+import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { OpportunityCard, PageHeader, ProgressBar, StatCard } from "@/components/member/member-ui";
+import { activeProjects, announcements, completedProjects, distributions, formatCurrency, member, opportunities, participations } from "@/lib/member-mock-data";
 
 export default function Page() {
-  return (
-    <PortalPage
-      title="Member Dashboard"
-      description="Placeholder dashboard page for the member portal foundation. No authentication, database logic, payment gateway, or eKYC integration is implemented."
-    />
-  );
+  const totalParticipation = participations.reduce((sum, item) => sum + item.amount, 0);
+  const totalDistribution = distributions.filter((d) => d.status === "Paid").reduce((sum, item) => sum + item.amount, 0);
+  return <div><PageHeader title="Dashboard"><p>Welcome back, {member.fullName}. Review open opportunities, active project progress, announcements, and mock distribution highlights. This phase uses mock data only.</p><div className="mt-5 flex flex-wrap gap-3"><Link className="rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-950" href="/member/opportunities">Browse Opportunities</Link><Link className="rounded-md border border-white/30 px-4 py-2 text-sm font-semibold text-white" href="/member/distributions">View Distributions</Link></div></PageHeader><section className="grid gap-4 md:grid-cols-4"><StatCard label="Total Participation" value={formatCurrency(totalParticipation)} note="Confirmed and submitted mock intent" /><StatCard label="Active Projects" value={`${activeProjects.length}`} note="Tracked with prototype progress" /><StatCard label="Completed Projects" value={`${completedProjects.length}`} note="Closed mock project outcomes" /><StatCard label="Total Distribution" value={formatCurrency(totalDistribution)} note="Paid prototype records" /></section><section className="mt-8"><div className="mb-4 flex items-center justify-between"><h2 className="text-xl font-semibold">Featured open opportunities</h2><Link className="text-sm font-semibold text-emerald-700" href="/member/opportunities">View all</Link></div><div className="grid gap-5 lg:grid-cols-3">{opportunities.map((opportunity) => <OpportunityCard key={opportunity.id} opportunity={opportunity} />)}</div></section><section className="mt-8 grid gap-5 lg:grid-cols-2"><Card><CardHeader><CardTitle>Recent project updates</CardTitle></CardHeader><CardContent className="space-y-5">{activeProjects.map((project) => <div key={project.id} className="space-y-2 rounded-2xl border p-4"><div className="flex justify-between"><strong>{project.title}</strong><span className="text-sm text-muted-foreground">{project.progressPercent}%</span></div><ProgressBar value={project.progressPercent} /><p className="text-sm text-muted-foreground">{project.latestUpdate}</p></div>)}</CardContent></Card><Card><CardHeader><CardTitle>Announcements</CardTitle></CardHeader><CardContent className="space-y-4">{announcements.map((item) => <Link href="/member/announcements" key={item.id} className="block rounded-2xl border p-4 hover:bg-slate-50"><p className="text-xs font-semibold uppercase text-emerald-700">{item.priority} • {item.publishDate}</p><h3 className="mt-1 font-semibold">{item.title}</h3><p className="mt-1 text-sm text-muted-foreground">{item.summary}</p></Link>)}</CardContent></Card></section></div>;
 }

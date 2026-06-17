@@ -1,0 +1,4 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge, PageHeader } from "@/components/member/member-ui";
+import { riskDisclosures } from "@/lib/member-mock-data";
+export default function Page() { return <div><PageHeader title="Risk Disclosure"><p>Risk content is visible in the member journey and acknowledged only as a mock UI control.</p></PageHeader><div className="space-y-4">{riskDisclosures.map((risk) => <Card key={risk.title}><CardHeader><Badge>{risk.severityLabel}</Badge><CardTitle>{risk.title}</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">{risk.body}</p><p className="mt-3 text-xs font-semibold">Acknowledgement required: {risk.requiresAcknowledgement ? "Yes" : "No"}</p></CardContent></Card>)}</div></div>; }

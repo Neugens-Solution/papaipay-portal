@@ -1,10 +1,4 @@
-import { PortalPage } from "@/components/placeholders/portal-page";
-
-export default function Page() {
-  return (
-    <PortalPage
-      title="Member Profile"
-      description="Placeholder profile page for the member portal foundation. No authentication, database logic, payment gateway, or eKYC integration is implemented."
-    />
-  );
-}
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge, PageHeader, SimpleTable } from "@/components/member/member-ui";
+import { member, notifications } from "@/lib/member-mock-data";
+export default function Page() { return <div><PageHeader title="Profile"><p>{member.fullName} • <span className="font-semibold">{member.profileStatus}</span>. Review prototype personal, bank, security, and KYC information.</p></PageHeader><div className="mb-6 flex flex-wrap gap-2">{["Personal Information", "Bank Account", "Security", "KYC Status"].map((tab) => <a key={tab} href={`#${tab.toLowerCase().replaceAll(" ", "-")}`} className="rounded-full border bg-card px-4 py-2 text-sm hover:bg-slate-50">{tab}</a>)}</div><div className="grid gap-6 lg:grid-cols-2"><Card id="personal-information"><CardHeader><CardTitle>Personal Information</CardTitle></CardHeader><CardContent><SimpleTable headers={["Field","Value"]} rows={[["Name", member.fullName],["Email", member.email],["Phone", member.phone],["Joined", member.joinedAt],["Preferences", member.notificationPreferences.join(", ")]]} /></CardContent></Card><Card id="bank-account"><CardHeader><CardTitle>Bank Account</CardTitle></CardHeader><CardContent className="space-y-3"><Badge>{member.bankAccountStatus}</Badge><p className="text-sm text-muted-foreground">{member.maskedBankAccount}</p></CardContent></Card><Card id="security"><CardHeader><CardTitle>Security</CardTitle></CardHeader><CardContent className="space-y-3"><Badge>{member.securityStatus}</Badge>{notifications.filter((n) => n.category === "Account").map((n) => <p key={n.id} className="text-sm text-muted-foreground">{n.title}: {n.message}</p>)}</CardContent></Card><Card id="kyc-status"><CardHeader><CardTitle>KYC Status</CardTitle></CardHeader><CardContent className="space-y-3"><Badge>{member.kycStatus}</Badge><p className="text-sm text-muted-foreground">Identity document, address confirmation, and review note placeholders are approved for this prototype member.</p></CardContent></Card></div></div>; }
