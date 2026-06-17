@@ -1,0 +1,3 @@
+import { PageHeader } from "@/components/member/member-ui";
+import { opportunities } from "@/lib/member-mock-data";
+export default function Page() { return <div><PageHeader title="Media Gallery"><p>Prototype gallery of member-visible opportunity and project media.</p></PageHeader><div className="grid gap-5 md:grid-cols-3">{opportunities.map((o) => <figure key={o.id} className="overflow-hidden rounded-2xl border bg-card"><img src={o.thumbnailUrl} alt="" className="h-48 w-full object-cover" /><figcaption className="p-4"><strong>{o.title}</strong><p className="text-sm text-muted-foreground">Member-visible campaign image</p></figcaption></figure>)}</div></div>; }
