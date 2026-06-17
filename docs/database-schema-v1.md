@@ -1,5 +1,8 @@
 # Papaipay Database Schema v1
 
+> **Legacy / superseded notice:** This document is retained for historical reference only. The current approved objective is a mock-data UI prototype only; no database implementation is in scope.
+
+
 ## Overview
 
 This document defines the database direction for Papaipay and is aligned with `docs/product-blueprint-v2.md`.

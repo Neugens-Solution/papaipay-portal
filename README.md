@@ -1,96 +1,76 @@
-# Papaipay
+# PAPAIPAY Portal Prototype V1
 
-Papaipay is a product ecosystem developed by Neugens Solution with two primary products:
+PAPAIPAY Portal Prototype V1 is a fully navigable, clickable UI prototype for the approved PAPAIPAY Portal Blueprint V1.
 
-1. **Corporate Website** — the public brand, company information, team, FAQ, contact, career, privacy, and terms presence.
-2. **Asset Participation Platform** — the authenticated platform for members and admins to manage eKYC, asset opportunities, contributions, payment gateway workflows, and reporting.
+The current product objective is to validate portal navigation, page structure, role-based experiences, and core user journeys before any production backend, database, or payment gateway work is approved.
 
-## Product Positioning
+## Current Scope
 
-Papaipay Product Blueprint V2 positions the platform around auction property asset participation.
+This repository currently represents a prototype scope only:
 
-Members browse asset opportunities and choose opportunities themselves. The platform must support multiple contributions and topups, with payment gateway integration planned as a core module.
+- UI prototype only
+- Mock data only
+- No backend
+- No database
+- No payment gateway implementation
+- No production authentication or authorization implementation
+- No real transactions, distributions, or member records
 
-The latest direction removes primary emphasis from advisor workflows, case management, and financial assessment-led onboarding.
+## Approved Roles
 
-## User Roles
+Portal Blueprint V1 defines four authenticated role experiences:
 
-Primary authenticated roles:
-
-- Member
+- Super Admin
 - Admin
+- Manager
+- Member
 
-Public visitors use the Corporate Website.
+## Product Direction
 
-## Product Areas
+PAPAIPAY Portal Prototype V1 focuses on property participation workflows using mock data. Members browse opportunities, review campaign and property information, participate in available opportunities, track active and completed projects, view announcements, receive notifications, and review distribution summaries.
 
-### Corporate Website
-
-- Public website
-- Brand presence
-- Team directory
-- Staff profile pages
-- FAQ
-- Contact
-- Career
-- Privacy Policy
-- Terms & Conditions
-
-### Asset Participation Platform
-
-- Member Portal
-- Admin Portal
-- eKYC with planned third-party integration
-- Asset Opportunities
-- Contributions
-- Topups
-- Payment Gateway
-- Reporting
-
-## Future-Ready Reserved Areas
-
-The documentation reserves space for the following future modules:
-
-- Profit Distribution
-- Rental Distribution
-- Commission Management
-
-These areas should remain future-ready unless implementation is explicitly approved.
-
-## Tech Stack
-
-- Next.js
-- Supabase
-- PostgreSQL
-- Supabase Auth
-- Supabase Storage
-- Tailwind CSS
-- Shadcn UI
-- Vercel
+Admins, Managers, and Super Admins use role-appropriate operational screens to manage prototype content, visibility, lifecycle states, announcements, notifications, member participation views, and permissions.
 
 ## Documentation
 
-Project documentation is stored in the `/docs` folder.
+Current Portal Blueprint V1 documentation is stored in `/docs`.
 
-Primary documents:
+Primary current documents:
 
+- `docs/product-blueprint-v1.md`
+- `docs/project-skeleton-v2.md`
+- `docs/navigation-v1.md`
+- `docs/component-library-v1.md`
+- `docs/mock-data-spec-v1.md`
+- `docs/route-audit-v2.md`
+
+Legacy or superseded references retained for history:
+
+- `docs/blueprint-v1.md`
 - `docs/product-blueprint-v2.md`
-- `docs/database-schema-v1.md`
 - `docs/project-skeleton-v1.md`
 - `docs/route-audit-v1.md`
+- `docs/database-schema-v1.md`
 - `docs/milestones.md`
-- `docs/codex-rules.md`
 
-Legacy reference:
+If any legacy document conflicts with Portal Blueprint V1, Portal Blueprint V1 is the approved source of truth for the current prototype objective.
 
-- `docs/blueprint-v1.md` is superseded by `docs/product-blueprint-v2.md` for product direction.
+## Tech Stack
+
+The prototype repository uses:
+
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- React
+- Mock data structures
+
+Backend, database, Supabase, PostgreSQL, authentication providers, storage, and payment gateway integrations are not part of the current implementation objective.
 
 ## Development Rules
 
-- 1 task = 1 Codex session
-- 1 session = 1 branch
-- PR merged = session closed
-- Do not continue old Codex sessions after merge
-- Every new session must inspect the latest codebase first
-- Database schema changes require approval
-- Documentation-only tasks must not modify application code, routes, UI, or add features
+- Documentation-only tasks must not modify application code, routes, UI, or feature behavior.
+- Do not create backend services without explicit approval.
+- Do not create database schema or migrations without explicit approval.
+- Do not implement payment gateway behavior without explicit approval.
+- Do not treat prototype mock data as production data design approval.

@@ -1,5 +1,8 @@
 # Papaipay Milestones
 
+> **Legacy / superseded notice:** This document is retained for historical reference only. Current work should align with `docs/product-blueprint-v1.md` and the mock-data UI prototype objective.
+
+
 ## Product Blueprint V2 Alignment
 
 Current planning should align with `docs/product-blueprint-v2.md`. Papaipay consists of two products:

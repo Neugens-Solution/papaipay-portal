@@ -1,5 +1,8 @@
 # Papaipay Project Skeleton v1
 
+> **Legacy / superseded notice:** This document is retained for historical reference only. The current target route direction is `docs/project-skeleton-v2.md` for PAPAIPAY Portal Prototype V1.
+
+
 ## Purpose
 
 This document defines the current project skeleton direction for Papaipay and aligns the documentation structure with `docs/product-blueprint-v2.md`.
